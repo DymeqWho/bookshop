@@ -22,6 +22,6 @@ public class User {
    private String password;
    private String email;
    private String address;
-   private List<Book> bookList;
-   private List<Comment> commentList;
+//   private List<Book> bookList;
+//   private List<Comment> commentList;
 }
