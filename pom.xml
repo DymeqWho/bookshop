@@ -8,11 +8,11 @@
         <version>2.5.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>dymitr.pawel</groupId>
     <artifactId>BookShop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SiiSii</name>
-    <description>Demo project for Spring Boot</description>
+    <name>BookShop</name>
+    <description>Exercise project about bookshop</description>
     <properties>
         <java.version>11</java.version>
     </properties>

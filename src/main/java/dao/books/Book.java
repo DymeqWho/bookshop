@@ -1,9 +1,11 @@
-package dymitr.pawel.bookshop.books;
+package dao.books;
+
+import dao.comments.Comment;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-public class Book
-{
+public class Book {
     private long id;
     private String summary;
     private String author;
@@ -11,8 +13,7 @@ public class Book
     private long isbn;
     private BigDecimal price;
     private boolean outOfStockInfo;
-    private  String comments;
-
+    private List<Comment> commentList;
 
 
 }
