@@ -23,8 +23,8 @@ public class UserService {
         user.setPassword(userRequest.getPassword());
         user.setEmail(userRequest.getEmail());
         user.setAddress(userRequest.getAddress());
-        logger.info("user " + user.getLogin() + " with email: " + user.getEmail() + " was created");
         usersRepository.save(user);
+        logger.info("user " + user.getLogin() + " with email: " + user.getEmail() + " was created");
     }
 
 }
