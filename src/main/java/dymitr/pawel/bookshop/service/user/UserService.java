@@ -2,6 +2,7 @@ package dymitr.pawel.bookshop.service.user;
 
 import dymitr.pawel.bookshop.dao.user.User;
 import dymitr.pawel.bookshop.dto.user.UserRequest;
+import dymitr.pawel.bookshop.dto.user.UserResponse;
 import dymitr.pawel.bookshop.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ public class UserService {
     private final UsersRepository usersRepository;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public void createNewUser(UserRequest userRequest){
+    public void createNewUser(UserRequest userRequest) {
         User user = new User();
         user.setLogin(userRequest.getLogin());
         user.setPassword(userRequest.getPassword());
@@ -25,6 +26,24 @@ public class UserService {
         user.setAddress(userRequest.getAddress());
         usersRepository.save(user);
         logger.info("user " + user.getLogin() + " with email: " + user.getEmail() + " was created");
+    }
+
+    public void deleteUserById(Long id) {
+        String login = usersRepository.findById(id).orElseThrow(() -> new RuntimeException("there is no such id")).getLogin();
+        usersRepository.deleteById(id);
+        logger.info("user " + login + " was deleted");
+    }
+
+    public UserResponse showUser(Long id) {
+        UserResponse userResponse = new UserResponse();
+        User userFromDB = usersRepository.findById(id).orElseThrow(() -> new RuntimeException("there is no such id"));
+        userResponse.setLogin(userFromDB.getLogin());
+        userResponse.setEmail(userFromDB.getEmail());
+        userResponse.setPassword(userFromDB.getPassword());
+        userResponse.setBookList(userFromDB.getBookList());
+        userResponse.setCommentList(userFromDB.getCommentList());
+
+        return userResponse;
     }
 
 }
