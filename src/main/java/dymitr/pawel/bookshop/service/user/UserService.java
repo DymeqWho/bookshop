@@ -39,6 +39,7 @@ public class UserService {
         User userFromDB = usersRepository.findById(id).orElseThrow(() -> new RuntimeException("there is no such id"));
         userResponse.setLogin(userFromDB.getLogin());
         userResponse.setEmail(userFromDB.getEmail());
+        userResponse.setAddress(userFromDB.getAddress());
         userResponse.setPassword(userFromDB.getPassword());
         userResponse.setBookList(userFromDB.getBookList());
         userResponse.setCommentList(userFromDB.getCommentList());

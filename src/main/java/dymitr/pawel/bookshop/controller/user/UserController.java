@@ -15,7 +15,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping(path = "/bookshop/user")
-    public void createNewParticipant(@RequestBody UserRequest userRequest) {
+    public void createNewUser(@RequestBody UserRequest userRequest) {
         userService.createNewUser(userRequest);
     }
 
@@ -24,7 +24,7 @@ public class UserController {
         userService.deleteUserById(id);
     }
 
-    @GetMapping(path = "bookshop/user/{id}")
+    @GetMapping(path = "/bookshop/user/{id}")
     public UserResponse showUser(@PathVariable(name = "id") Long id) {
         return userService.showUser(id);
     }
