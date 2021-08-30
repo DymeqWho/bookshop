@@ -8,6 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class CommentsResponse {
     private User userId;
     private Book booksId;
