@@ -29,4 +29,9 @@ public class UserController {
         return userService.showUser(id);
     }
 
+    @PostMapping(path = "/bookshop/user/edit/{id}")
+    public void editUser(@RequestBody UserRequest userRequest, @PathVariable(name = "id") Long id){
+        userService.editUser(userRequest, id);
+    }
+
 }

@@ -47,4 +47,15 @@ public class UserService {
         return userResponse;
     }
 
+    public void editUser(UserRequest userRequest, Long id){
+        User user = usersRepository.findById(id).orElseThrow(() -> new RuntimeException("there is no such id"));
+        String oldLogin = user.getLogin();
+        user.setLogin(userRequest.getLogin());
+        user.setPassword(userRequest.getPassword());
+        user.setEmail(userRequest.getEmail());
+        user.setAddress(userRequest.getAddress());
+
+        logger.info("user " + oldLogin + " was edited to " + user.getLogin());
+    }
+
 }

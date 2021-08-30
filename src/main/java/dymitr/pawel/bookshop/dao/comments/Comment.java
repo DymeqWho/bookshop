@@ -23,9 +23,9 @@ public class Comment {
     private long id;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User userId;
+    private long userId;
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
-    private Book booksId;
+    private long booksId;
     private String commentary;
 }
