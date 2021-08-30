@@ -1,5 +1,7 @@
 package dymitr.pawel.bookshop.dto.comments;
 
+import dymitr.pawel.bookshop.dao.books.Book;
+import dymitr.pawel.bookshop.dao.user.User;
 import lombok.*;
 
 @Setter
@@ -7,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentsResponse {
-    private long userId;
-    private long booksId;
+    private User userId;
+    private Book booksId;
     private String commentary;
 }

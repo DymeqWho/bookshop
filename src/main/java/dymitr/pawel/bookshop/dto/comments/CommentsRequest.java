@@ -1,5 +1,7 @@
 package dymitr.pawel.bookshop.dto.comments;
 
+import dymitr.pawel.bookshop.dao.books.Book;
+import dymitr.pawel.bookshop.dao.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentsRequest {
-    private long userId;
-    private long booksId;
+    private User userId;
+    private Book booksId;
     private String commentary;
 }
