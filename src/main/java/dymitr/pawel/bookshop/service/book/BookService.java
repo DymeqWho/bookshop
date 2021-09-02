@@ -2,6 +2,7 @@ package dymitr.pawel.bookshop.service.book;
 
 import dymitr.pawel.bookshop.dao.books.Book;
 import dymitr.pawel.bookshop.dto.book.BookRequest;
+import dymitr.pawel.bookshop.dto.book.BookResponse;
 import dymitr.pawel.bookshop.repository.BooksRepository;
 import dymitr.pawel.bookshop.repository.CommentsRepository;
 import dymitr.pawel.bookshop.repository.UsersRepository;
@@ -25,6 +26,18 @@ public class BookService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
+    public BookResponse showBook(Long id) {
+        Book book = findBookByID(id);
+        BookResponse bookResponse = new BookResponse();
+        bookResponse.setAuthor(book.getAuthor());
+        bookResponse.setTitle(book.getTitle());
+        bookResponse.setSummary(book.getSummary());
+        bookResponse.setIsbn(book.getIsbn());
+        bookResponse.setPrice(book.getPrice());
+        bookResponse.setOutOfStockInfo(book.isOutOfStockInfo());
+        return bookResponse;
+    }
+
     public void createBook(BookRequest bookRequest) {
         Book book = new Book();
         book.setTitle(bookRequest.getTitle());
@@ -35,5 +48,23 @@ public class BookService {
         book.setOutOfStockInfo(bookRequest.isOutOfStockInfo());
         booksRepository.save(book);
         logger.info("Book was created " + book.getTitle());
+    }
+
+    public void deleteBook(Long id) {
+        booksRepository.delete(booksRepository.getById(id));
+    }
+
+    public void editBook(BookRequest bookRequest, Long id) {
+        Book book = findBookByID(id);
+        book.setAuthor(bookRequest.getAuthor());
+        book.setTitle(bookRequest.getTitle());
+        book.setSummary(bookRequest.getSummary());
+        book.setIsbn(bookRequest.getIsbn());
+        book.setPrice(bookRequest.getPrice());
+        book.setOutOfStockInfo(bookRequest.isOutOfStockInfo());
+    }
+
+    private Book findBookByID(Long id) {
+        return booksRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no such ID"));
     }
 }

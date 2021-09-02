@@ -31,7 +31,7 @@ public class Book {
     @OneToMany(mappedBy = "booksId")
     private Set<Comment> commentList;
     @ManyToOne
-    @JoinColumn(name="user_id",nullable = false)
+    @JoinColumn(name="user_id")
     private User user;
 
 
