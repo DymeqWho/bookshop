@@ -29,14 +29,14 @@ public class UserService {
     }
 
     public void deleteUserById(Long id) {
-        String login = usersRepository.findById(id).orElseThrow(() -> new RuntimeException("there is no such id")).getLogin();
+        String login = findUserById(id).getLogin();
         usersRepository.deleteById(id);
         logger.info("user " + login + " was deleted");
     }
 
     public UserResponse showUser(Long id) {
         UserResponse userResponse = new UserResponse();
-        User userFromDB = usersRepository.findById(id).orElseThrow(() -> new RuntimeException("there is no such id"));
+        User userFromDB = findUserById(id);
         userResponse.setLogin(userFromDB.getLogin());
         userResponse.setEmail(userFromDB.getEmail());
         userResponse.setAddress(userFromDB.getAddress());
@@ -48,7 +48,7 @@ public class UserService {
     }
 
     public void editUser(UserRequest userRequest, Long id) {
-        User user = usersRepository.findById(id).orElseThrow(() -> new RuntimeException("there is no such id"));
+        User user = findUserById(id);
         String oldLogin = user.getLogin();
         user.setLogin(userRequest.getLogin());
         user.setPassword(userRequest.getPassword());
@@ -58,4 +58,7 @@ public class UserService {
         logger.info("user " + oldLogin + " was edited to " + user.getLogin());
     }
 
+    private User findUserById(long id){
+        return usersRepository.findById(id).orElseThrow(() -> new RuntimeException("there is no such id"));
+    }
 }

@@ -27,11 +27,11 @@ public class CommentService {
         Comment comment = new Comment();
 
         comment.setCommentary(commentsRequest.getCommentary());
-        comment.setUserId(usersRepository.getById(userId));
-        comment.setBooksId(booksRepository.getById(bookId));
+        comment.setUserId(commentsRequest.getUserId());
+        comment.setBooksId(comment.getBooksId());
 
         commentsRepository.save(comment);
-        logger.info("comment was created by user: " + usersRepository.getById(bookId).getLogin()
+        logger.info("comment was created by user: " + usersRepository.getById(userId).getLogin()
                 + "for book: " + booksRepository.getById(bookId).getTitle());
     }
 }
